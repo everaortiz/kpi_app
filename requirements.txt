@@ -1,0 +1,5 @@
+streamlit~=1.16.0
+pandas~=1.5.2
+plotly~=5.11.0
+Pillow~=9.4.0
+git+https://github.com/holaluz/data-tools.git@main
