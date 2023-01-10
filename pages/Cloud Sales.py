@@ -5,7 +5,7 @@ from functions import extract_snowflake_noload, convert_df
 from datetime import date
 import plotly.express as px
 import pandas as pd
-
+OBJECTIVE_Q1 = 3000
 today = date.today()
 today_formatted = today.strftime('%Y%m%d')
 year, week_num, day_of_week = today.isocalendar()
@@ -22,6 +22,9 @@ col1, col2 = st.columns(2)
 col1.title('Cloud Sales')
 cloud_sales = extract_snowflake_noload(sql.QUERY_CLOUD_SALES_2023).iloc[0]["cloud_sales"]
 col2.metric(f"Total {year}", f"{cloud_sales}")
+
+st.sidebar.metric(f"Objective Q1", f"{'{:,}'.format(OBJECTIVE_Q1).replace(',', '.')}",
+                  f"{'{:,}'.format(cloud_sales-OBJECTIVE_Q1).replace(',', '.')}")
 
 st.markdown("""---""")
 st.subheader('Last 15 days')
